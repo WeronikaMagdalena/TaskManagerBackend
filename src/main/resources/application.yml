@@ -19,17 +19,17 @@ spring:
       hibernate:
         format_sql: true
 
-  security:
-    oauth2:
-      client:
-        registration:
-          cognito:
-            client-id: 16o4fuqp5o5gdrrmds9255flp1
-#            client-secret: <client secret>
-            scope: email openid profile
-            redirect-uri: http://localhost:3000/callback
-        provider:
-          cognito:
-            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Jnx1IADkh
-            user-name-attribute: username
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          cognito:
+#            client-id: 16o4fuqp5o5gdrrmds9255flp1
+##            client-secret: <client secret>
+#            scope: email openid profile
+#            redirect-uri: http://localhost:3000/callback
+#        provider:
+#          cognito:
+#            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Jnx1IADkh
+#            user-name-attribute: username
 
