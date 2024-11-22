@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: Task Manager
+  datasource:
+    url: jdbc:postgresql://task-manager-db.c5wkqwu2q57g.us-east-1.rds.amazonaws.com/postgres
+    username: wera
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      dialect: PostgresSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            client-id: 16o4fuqp5o5gdrrmds9255flp1
+#            client-secret: <client secret>
+            scope: email openid profile
+            redirect-uri: http://localhost:3000/callback
+        provider:
+          cognito:
+            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Jnx1IADkh
+            user-name-attribute: username
+
