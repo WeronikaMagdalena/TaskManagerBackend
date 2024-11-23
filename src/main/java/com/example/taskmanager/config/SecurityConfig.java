@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.List;
+
 @Configuration
 public class SecurityConfig {
 
@@ -14,8 +16,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless applications (e.g., with JWT)
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.setAllowedOrigins(List.of("http://localhost:3000")); // Frontend origin
+                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allowed HTTP methods
+                    corsConfig.setAllowedHeaders(List.of("*")); // Allow all headers
+                    corsConfig.setAllowCredentials(true); // Allow cookies (if needed)
+                    return corsConfig;
+                }))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/login", "/signup", "/callback").permitAll() // Allow unauthenticated access to login/signup/callback
+                        .requestMatchers("/login", "/signup", "/callback").permitAll()
+                        .requestMatchers("/api/tasks").permitAll()
                         .anyRequest().authenticated() // All other requests must be authenticated
                 )
                 .sessionManagement(sessionManagement ->
