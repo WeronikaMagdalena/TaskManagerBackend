@@ -15,7 +15,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless applications (e.g., with JWT)
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/login", "/signup", "/callback").permitAll() // Allow unauthenticated access to login/signup/callback
+                        .requestMatchers("/login", "/signup", "/callback").permitAll()
+                        .requestMatchers("/api/tasks").permitAll()
                         .anyRequest().authenticated() // All other requests must be authenticated
                 )
                 .sessionManagement(sessionManagement ->
