@@ -1,4 +1,7 @@
 spring:
+
+# DATABASE
+
   application:
     name: Task Manager
   datasource:
@@ -18,6 +21,33 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+# COGNITO
+
+# TODO
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            # TODO
+            user-pool-id: us-east-1_Ki3JwOkPh
+            client-id: 1ljb2oeikdk3kc9ia1k9ecckqa
+            token-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_WQcDEQIge/.well-known/jwks.json
+            scope: openid, profile, email
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:3000/login/oauth2/code/cognito
+        provider:
+          cognito:
+            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_WQcDEQIge
+            user-name-attribute: username
+#            authorization-uri: https://<user-pool-domain>.auth.<region>.amazoncognito.com/oauth2/authorize
+#            token-uri: https://<user-pool-domain>.auth.<region>.amazoncognito.com/oauth2/token
+#            jwk-set-uri: https://cognito-idp.<region>.amazonaws.com/<user-pool-id>/.well-known/jwks.json
+#            user-info-uri: https://<user-pool-domain>.auth.<region>.amazoncognito.com/oauth2/userInfo
+
+
 
 #  security:
 #    oauth2:
