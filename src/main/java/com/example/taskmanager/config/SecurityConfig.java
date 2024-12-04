@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/login", "/signup", "/callback").permitAll()
                         .requestMatchers("/api/tasks").permitAll()
+                        .requestMatchers("/api/tasks/**").permitAll()
                         .anyRequest().authenticated() // All other requests must be authenticated
                 )
                 .sessionManagement(sessionManagement ->
