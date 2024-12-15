@@ -13,7 +13,7 @@ spring:
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       dialect: PostgresSQLDialect
     show-sql: true
     properties:
